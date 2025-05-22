@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Программирование Python | IT-Cube</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/typical.css">
+    <style>
+        :root {
+            --python-blue: #3776AB;
+            --python-yellow: #FFD43B;
+            --python-light: #5E9ED6;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --text-light: #4a5568;
+            --shadow: 0 4px 20px rgba(55, 118, 171, 0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шапка */
+        header {
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--python-blue), var(--python-light));
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .back {
+            width: 36px;
+            height: 36px;
+            transition: all 0.3s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        .back:hover {
+            transform: translateX(-4px);
+        }
+
+        .title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+
+        /* Основное содержимое */
+        .wrapper {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(135deg, var(--python-blue), var(--python-light));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Информационные карточки */
+        .info-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(55, 118, 171, 0.15);
+        }
+
+        .info-card h2 {
+            color: var(--python-blue);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--python-blue);
+            border-radius: 3px;
+        }
+
+        .text {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .text b {
+            color: var(--python-blue);
+            font-weight: 600;
+        }
+
+        /* Список особенностей */
+        .features-list {
+            margin: 1.5rem 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .features-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--python-yellow);
+            font-weight: bold;
+        }
+
+        /* Области применения */
+        .applications {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .application {
+            background: rgba(55, 118, 171, 0.1);
+            color: var(--python-blue);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(55, 118, 171, 0.2);
+        }
+
+        .application:hover {
+            background: rgba(55, 118, 171, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(55, 118, 171, 0.1);
+        }
+
+        /* Изображения */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .img_python, .img_ych_python {
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+
+        .img_python:hover, .img_ych_python:hover {
+            transform: scale(1.02);
+        }
+
+        /* Кнопка */
+        .text_12 {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .text_12 a {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--python-blue), var(--python-light));
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(55, 118, 171, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text_12 a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(55, 118, 171, 0.4);
+        }
+
+        .text_12 a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .text_12 a:hover::after {
+            left: 100%;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 0 1.5rem;
+            }
+            
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .title {
+                margin: 0.5rem 0 1rem;
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .applications {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+            
+            .img_python, .img_ych_python {
+                height: 250px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="main.html"><img src="assets/img/back.png" alt="Назад" class="back"></a>
+
+        <div class="title">Программирование Python</div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="main.html" class="link">Главная</a></li>
+                <li><a href="schedule.html" class="link">Расписание</a></li>
+                <li><a href="events.html" class="link">Мероприятия</a></li>
+                <li><a href="about.html" class="link">О нас</a></li>
+                <li><a href="clubs.html" class="link">Кружки</a></li>
+            </ul>
+        </nav>
+        
+        <div class="burger">
+            <span></span>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrapper">
+            <section class="hero">
+                <h1>Программирование на Python</h1>
+                <p>Современный язык для начинающих и профессионалов</p>
+            </section>
+
+            <div class="info-card">
+                <h2>О языке Python</h2>
+                <div class="text"><b>Python</b> — высокоуровневый язык программирования общего назначения с динамической строгой типизацией и автоматическим управлением памятью. Ориентирован на повышение производительности разработчика, читаемости кода и его качества, а также на обеспечение переносимости написанных на нём программ.</div>
+                
+                <div class="image-container">
+                    <div class="img_python"></div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2>Ключевые особенности</h2>
+                <ul class="features-list">
+                    <li><b>Интерпретируемость</b> - код выполняется построчно, в режиме реального времени, что позволяет быстро исправлять и проверять код без компиляции.</li>
+                    <li><b>Динамическая типизация</b> - тип переменной определяется автоматически во время выполнения, что делает программирование более гибким.</li>
+                    <li><b>Объектно-ориентированность</b> - позволяет разрабатывать код в виде взаимодействующих объектов, делая код модульным и повторно используемым.</li>
+                    <li><b>Поддержка разных парадигм</b> - императивное, процедурное, структурное, ООП, функциональное и асинхронное программирование.</li>
+                    <li><b>Богатая стандартная библиотека</b> - включает модули для работы с ОС, сетями, базами данных, графикой и многое другое.</li>
+                    <li><b>Кроссплатформенность</b> - код работает на Windows, Linux, macOS без изменений.</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2>Области применения</h2>
+                <div class="text">Python широко используется в различных сферах благодаря своей универсальности и простоте:</div>
+                
+                <div class="applications">
+                    <div class="application">Веб-разработка</div>
+                    <div class="application">Научные исследования</div>
+                    <div class="application">Анализ данных</div>
+                    <div class="application">Искусственный интеллект</div>
+                    <div class="application">Машинное обучение</div>
+                    <div class="application">Разработка игр</div>
+                    <div class="application">Автоматизация</div>
+                    <div class="application">DevOps</div>
+                    <div class="application">Образование</div>
+                    <div class="application">Финансы</div>
+                    <div class="application">Кибербезопасность</div>
+                    <div class="application">IoT</div>
+                </div>
+            </div>
+
+            <div class="image-container">
+                <div class="img_ych_python"></div>
+            </div>
+
+            <div class="text_12">
+                <a href="http://licey1str.ru/wp-content/uploads/2021/11/IT-куб_Основы-алгоритмики-и-логики-1.pdf" target="_blank">
+                    Скачать учебник по Python
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/burger.js"></script>
+</body>
+</html>

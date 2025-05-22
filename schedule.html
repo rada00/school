@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Расписание курсов IT-Cube</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+            color: #343a40;
+            line-height: 1.6;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .container:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #212529;
+            margin-bottom: 40px;
+            font-weight: 700;
+            font-size: 3rem;
+            animation: fadeInDown 1s ease-in-out;
+        }
+
+        /* Стили для таблицы */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+            animation: fadeInUp 1s ease-in-out;
+        }
+
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+            transition: background-color 0.3s ease;
+        }
+
+        th {
+            background-color: #343a40;
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tbody tr:hover {
+            background-color: #e9ecef;
+            transform: translateY(-2px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+       td {
+          transition: transform 0.2s ease-in-out;
+       }
+
+       td:hover {
+         transform: scale(1.02); /* Увеличиваем масштаб ячейки при наведении */
+        }
+        /* Стили для фильтрации */
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 40px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .filter-button {
+            padding: 12px 24px;
+            margin: 8px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: capitalize;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-button:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .filter-button:hover,
+        .filter-button:focus {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .filter-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+        }
+
+        .filter-button.active {
+            background-color: #0056b3;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+        }
+
+           /* Определите анимацию fadeInDown */
+        @keyframes fadeInDown {
+          from {
+            opacity: 0;
+            transform: translateY(-50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        /* Медиа-запросы для адаптивности */
+        @media (max-width: 768px) {
+           .container {
+               padding: 20px; /* Уменьшаем отступы */
+               margin: 20px auto;
+            }
+
+            h1 {
+                font-size: 2.2rem; /* Уменьшаем размер заголовка */
+                margin-bottom: 30px;
+             }
+
+            table {
+                overflow-x: auto; /* Добавляем горизонтальную прокрутку */
+                display: block;
+                font-size: 0.9rem;
+            }
+
+            th, td {
+               white-space: nowrap; /* Запрещаем перенос слов */
+               padding: 10px;
+             }
+               /* Фильтр кнопки становятся более узкими */
+            .filter-button {
+                  padding: 10px 18px;
+                  font-size: 0.9rem;
+                  margin: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Расписание курсов IT-Cube</h1>
+
+        <div class="filter-container">
+            <button class="filter-button active" data-course="all">Все курсы</button>
+            <button class="filter-button" data-course="Основы алгоритмики и логики">Основы алгоритмики и логики</button>
+            <button class="filter-button" data-course="Программирование Python">Программирование Python</button>
+            <button class="filter-button" data-course="Программирование Java">Программирование Java</button>
+            <button class="filter-button" data-course="Программирование роботов">Программирование роботов</button>
+            <button class="filter-button" data-course="VR/AR разработка">VR/AR разработка</button>
+            <button class="filter-button" data-course="Мобильная разработка">Мобильная разработка</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Курс</th>
+                    <th>День недели</th>
+                    <th>Время</th>
+                    <th>Преподаватель</th>
+                    <th>Аудитория</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr data-course="Основы алгоритмики и логики">
+                    <td>Основы алгоритмики и логики</td>
+                    <td>Понедельник</td>
+                    <td>16:00 - 17:30</td>
+                    <td>Иванов И.И.</td>
+                    <td>201</td>
+                </tr>
+                <tr data-course="Основы алгоритмики и логики">
+                    <td>Основы алгоритмики и логики</td>
+                    <td>Среда</td>
+                    <td>16:00 - 17:30</td>
+                    <td>Иванов И.И.</td>
+                    <td>201</td>
+                </tr>
+                <tr data-course="Программирование Python">
+                    <td>Программирование Python</td>
+                    <td>Вторник</td>
+                    <td>18:00 - 19:30</td>
+                    <td>Петров П.П.</td>
+                    <td>202</td>
+                </tr>
+                <tr data-course="Программирование Python">
+                    <td>Программирование Python</td>
+                    <td>Четверг</td>
+                    <td>18:00 - 19:30</td>
+                    <td>Петров П.П.</td>
+                    <td>202</td>
+                </tr>
+                <tr data-course="Программирование Java">
+                    <td>Программирование Java</td>
+                    <td>Среда</td>
+                    <td>18:00 - 19:30</td>
+                    <td>Сидоров С.С.</td>
+                    <td>203</td>
+                </tr>
+                <tr data-course="Программирование Java">
+                    <td>Программирование Java</td>
+                    <td>Пятница</td>
+                    <td>18:00 - 19:30</td>
+                    <td>Сидоров С.С.</td>
+                    <td>203</td>
+                </tr>
+                <tr data-course="Программирование роботов">
+                    <td>Программирование роботов</td>
+                    <td>Понедельник</td>
+                    <td>18:00 - 19:30</td>
+                    <td>Кузнецов К.К.</td>
+                    <td>301</td>
+                </tr>
+                <tr data-course="Программирование роботов">
+                    <td>Программирование роботов</td>
+                    <td>Среда</td>
+                    <td>18:00 - 19:30</td>
+                    <td>Кузнецов К.К.</td>
+                    <td>301</td>
+                </tr>
+                <tr data-course="VR/AR разработка">
+                    <td>VR/AR разработка</td>
+                    <td>Вторник</td>
+                    <td>16:00 - 17:30</td>
+                    <td>Смирнов С.С.</td>
+                    <td>302</td>
+                </tr>
+                <tr data-course="VR/AR разработка">
+                    <td>VR/AR разработка</td>
+                    <td>Четверг</td>
+                    <td>16:00 - 17:30</td>
+                    <td>Смирнов С.С.</td>
+                    <td>302</td>
+                </tr>
+                <tr data-course="Мобильная разработка">
+                    <td>Мобильная разработка</td>
+                    <td>Пятница</td>
+                    <td>16:00 - 17:30</td>
+                    <td>Олегов О.О.</td>
+                    <td>303</td>
+                </tr>
+                 <tr data-course="Мобильная разработка">
+                    <td>Мобильная разработка</td>
+                    <td>Суббота</td>
+                    <td>12:00 - 13:30</td>
+                    <td>Олегов О.О.</td>
+                    <td>303</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-button');
+        const tableRows = document.querySelectorAll('tbody tr');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const course = this.dataset.course;
+
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+
+                tableRows.forEach(row => {
+                    if (course === 'all' || row.dataset.course === course) {
+                        row.style.display = '';
+                         row.classList.add('animate-row');  // Added animation class
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

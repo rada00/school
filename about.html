@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас | IT-Cube</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/typical.css">
+    <style>
+        :root {
+            --primary-color: #6c5ce7;
+            --secondary-color: #a29bfe;
+            --accent-color: #fd79a8;
+            --light-bg: #f9f9ff;
+            --card-bg: #ffffff;
+            --text-color: #2d3436;
+            --text-light: #636e72;
+            --shadow: 0 4px 20px rgba(108, 92, 231, 0.1);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шапка */
+        header {
+            padding: 1.2rem 2rem;
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .back {
+            width: 36px;
+            height: 36px;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            padding: 6px;
+            background-color: rgba(108, 92, 231, 0.1);
+        }
+
+        .back:hover {
+            transform: translateX(-4px);
+            background-color: rgba(108, 92, 231, 0.2);
+        }
+
+        .title {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0.5rem 0;
+            position: relative;
+        }
+
+        .title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        /* Основное содержимое */
+        .wrapper {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Информационные карточки */
+        .info-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(108, 92, 231, 0.15);
+        }
+
+        .info-card h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+
+        .text {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .text b {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        /* Список */
+        .feature-list {
+            margin: 1.5rem 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .feature-list li {
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .feature-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.7rem;
+            width: 12px;
+            height: 12px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+
+        /* Контакты */
+        .contacts-card {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
+            
+            
+        }
+
+        .contacts-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .contacts-image {
+            flex: 0 0 300px;
+            text-align: center;
+        }
+
+        .contacts-image img {
+            width: 100%;
+            max-width: 250px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+
+        .contacts-image img:hover {
+            transform: scale(1.05);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            width: 30px;
+            height: 30px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        /* Карта */
+        .map-container {
+            margin: 3rem 0;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            height: 450px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Форма */
+        .form-container {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
+        }
+
+        .form-container h2 {
+            color: var(--primary-color);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .form-container form {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-container input,
+        .form-container textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid rgba(108, 92, 231, 0.3);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-container input:focus,
+        .form-container textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(108, 92, 231, 0.2);
+        }
+
+        .form-container button {
+            padding: 1rem 2rem;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            justify-self: center;
+        }
+
+        .form-container button:hover {
+            background: var(--secondary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.3);
+        }
+
+        /* Ссылки */
+        a {
+            color: var(--primary-color);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        a:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 0 1.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .contacts-card {
+                flex-direction: column;
+                padding: 1.5rem;
+            }
+            
+            .contacts-image {
+                flex: 0 0 auto;
+            }
+            
+            .map-container {
+                height: 300px;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="main.html"><img src="assets/img/back.png" alt="Назад" class="back"></a>
+
+        <div class="title">О нас</div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="main.html" class="link">Главная</a></li>
+                <li><a href="schedule.html" class="link">Расписание</a></li>
+                <li><a href="events.html" class="link">Мероприятия</a></li>
+                <li><a href="about.html" class="link">О нас</a></li>
+                <li><a href="clubs.html" class="link">Кружки</a></li>
+            </ul>
+        </nav>
+        
+        <div class="burger">
+            <span></span>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrapper">
+            <section class="hero">
+                <h1>IT-Куб Стерлитамак</h1>
+                <p>Инновационная площадка дополнительного образования в сфере современных информационных технологий</p>
+            </section>
+
+            <div class="info-card">
+                <h2>О центре</h2>
+                <div class="text"><b>IT-Куб</b> – это инновационная площадка дополнительного образования и интеллектуального развития детей и подростков в сфере современных информационных и телекоммуникационных технологий.</div>
+                <div class="text">Центр цифрового образования детей «IT-куб» на базе МАОУ «Лицей №1» создан в 2021 году в рамках федерального проекта «Цифровая образовательная среда» национального проекта «Образование».</div>
+                <div class="text">Мы обеспечиваем освоение детьми актуальных и востребованных знаний, навыков и компетенций в сфере информационно-телекоммуникационных технологий.</div>
+            </div>
+
+            <div class="info-card">
+                <h2>Наша миссия</h2>
+                <div class="text">Центр призван создать условия для:</div>
+                <ul class="feature-list">
+                    <li>Выявления, поддержки и развития талантов у детей</li>
+                    <li>Профориентации в IT-сфере</li>
+                    <li>Развития математической и информационной грамотности</li>
+                    <li>Формирования критического и креативного мышления</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2>Направления деятельности</h2>
+                <ul class="feature-list">
+                    <li>Реализация дополнительных образовательных программ цифрового профиля</li>
+                    <li>Профориентационная и просветительская деятельность по цифровой грамотности</li>
+                    <li>Организация образовательных мероприятий для детей и педагогов</li>
+                    <li>Проведение конкурсов, олимпиад и хакатонов по программированию</li>
+                    <li>Методическая поддержка школ в преподавании математики и технологии</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h2>Организационная информация</h2>
+                <div class="text">Центры цифрового образования детей «IT-куб» создаются при поддержке Министерства просвещения Российской Федерации.</div>
+                <div class="text">
+                    Адрес сайта Министерства просвещения: <a href="https://edu.gov.ru/" target="_blank">https://edu.gov.ru/</a><br>
+                    Федеральный оператор: <a href="https://apkpro.ru/" target="_blank">https://apkpro.ru/</a><br>
+                    Национальный проект «Образование»: <a href="https://edu.gov.ru/national-project/" target="_blank">https://edu.gov.ru/national-project/</a>
+                </div>
+            </div>
+
+            <div class="contacts-card">
+                <div class="contacts-info">
+                    <h2 style="color: var(--primary-color); margin-bottom: 1.5rem;">Контакты</h2>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div class="text">
+                            <b>Адрес:</b><br>
+                            корпус 1: 453118, Россия, Республика Башкортостан,<br>
+                            г. Стерлитамак, Проспект Октября, 16а
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div class="text">
+                            <b>Email:</b> <a href="mailto:it.cube.licey1@yandex.ru">it.cube.licey1@yandex.ru</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">🕒</div>
+                        <div class="text">
+                            <b>Режим работы:</b><br>
+                            Понедельник-Пятница: с 08:00 до 17:00<br>
+                            Суббота, Воскресенье — выходной
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contacts-image">
+                    <div class="logo-container">
+           <svg width="320" height="80" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+    <!-- Градиент для куба -->
+    <defs>
+        <linearGradient id="cubeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#64c8ff"/>
+            <stop offset="100%" stop-color="#1a3a5a"/>
+        </linearGradient>
+        <linearGradient id="textGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#64c8ff"/>
+            <stop offset="100%" stop-color="#ffffff"/>
+        </linearGradient>
+    </defs>
+    
+    <!-- Анимированный куб -->
+    <g transform="translate(10 10)">
+        <!-- Передняя грань -->
+        <path d="M30 0 L60 20 L60 60 L30 40 Z" fill="url(#cubeGradient)" opacity="0.9">
+            <animate attributeName="opacity" values="0.9;0.7;0.9" dur="4s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Верхняя грань -->
+        <path d="M30 0 L60 20 L40 10 L10 -10 Z" fill="url(#cubeGradient)" opacity="0.7">
+            <animate attributeName="opacity" values="0.7;0.9;0.7" dur="4s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Боковая грань -->
+        <path d="M60 20 L40 10 L40 50 L60 60 Z" fill="url(#cubeGradient)" opacity="0.8">
+            <animate attributeName="opacity" values="0.8;0.6;0.8" dur="4s" repeatCount="indefinite"/>
+        </path>
+        
+        <!-- Эффект свечения -->
+        <path d="M30 0 L60 20 L60 60 L30 40 Z" fill="none" stroke="#64c8ff" stroke-width="1" stroke-opacity="0.3">
+            <animate attributeName="stroke-opacity" values="0.3;0.6;0.3" dur="3s" repeatCount="indefinite"/>
+        </path>
+    </g>
+    
+    <!-- Текст логотипа -->
+    <text x="80" y="45" font-family="'Montserrat', sans-serif" font-weight="700" font-size="36" fill="url(#textGradient)">
+        IT-CUBE
+    </text>
+    
+    <!-- Дополнительный эффект -->
+    <circle cx="15" cy="15" r="3" fill="#64c8ff" opacity="0.8">
+        <animate attributeName="r" values="3;5;3" dur="3s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="180" cy="60" r="2" fill="#64c8ff" opacity="0.6">
+        <animate attributeName="r" values="2;4;2" dur="4s" repeatCount="indefinite"/>
+    </circle>
+</svg>
+        </div>
+                </div>
+            </div>
+
+            <div class="map-container">
+                <iframe src="https://yandex.ru/map-widget/v1/?ll=55.920198%2C53.633152&mode=search&oid=1218918572&ol=biz&source=serp_navig&z=15.84" allowfullscreen="true"></iframe>
+            </div>
+
+            <div class="form-container">
+                <h2>Напишите нам</h2>
+                <form action="./assets/php/set_auto.php" method="post">
+                    <input type="text" id="name" name="name" placeholder="Имя" required>
+                    <input type="tel" id="phone" name="phone" placeholder="Телефон" required>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                    <textarea id="message" name="message" placeholder="Сообщение" rows="4" required></textarea>
+                    <button type="submit">Отправить</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/burger.js"></script>
+</body>
+</html>

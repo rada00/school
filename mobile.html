@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мобильная разработка | IT-Cube</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/typical.css">
+    <style>
+        :root {
+            --android-green: #3DDC84;
+            --ios-blue: #007AFF;
+            --flutter-blue: #02569B;
+            --react-blue: #61DAFB;
+            --light-bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-color: #2d3748;
+            --text-light: #4a5568;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --border-radius: 12px;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.7;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Шапка */
+        header {
+            padding: 1.2rem 2rem;
+            background: linear-gradient(135deg, var(--ios-blue), var(--android-green));
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: var(--shadow);
+        }
+
+        .back {
+            width: 36px;
+            height: 36px;
+            transition: all 0.3s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        .back:hover {
+            transform: translateX(-4px);
+        }
+
+        .title {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-align: center;
+            margin: 0.5rem 0;
+        }
+
+        /* Основное содержимое */
+        .wrapper {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        /* Герой-секция */
+        .hero {
+            background: linear-gradient(135deg, var(--ios-blue), var(--android-green));
+            color: white;
+            padding: 4rem 2rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Информационные карточки */
+        .info-card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .info-card h2 {
+            color: var(--ios-blue);
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .info-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--ios-blue);
+            border-radius: 3px;
+        }
+
+        .text {
+            margin-bottom: 1.2rem;
+            font-size: 1.05rem;
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+
+        .text b {
+            color: var(--ios-blue);
+            font-weight: 600;
+        }
+
+        /* Платформы */
+        .platforms {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .platform {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .platform:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .platform.android {
+            border-top: 4px solid var(--android-green);
+        }
+
+        .platform.ios {
+            border-top: 4px solid var(--ios-blue);
+        }
+
+        .platform.flutter {
+            border-top: 4px solid var(--flutter-blue);
+        }
+
+        .platform.react {
+            border-top: 4px solid var(--react-blue);
+        }
+
+        .platform-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .platform-name {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Этапы разработки */
+        .dev-steps {
+            margin: 1.5rem 0;
+            padding-left: 0;
+            list-style: none;
+        }
+
+        .dev-steps li {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 2.5rem;
+        }
+
+        .dev-steps li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 20px;
+            height: 20px;
+            background: var(--ios-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .dev-steps li:nth-child(1)::before { content: '1'; }
+        .dev-steps li:nth-child(2)::before { content: '2'; }
+        .dev-steps li:nth-child(3)::before { content: '3'; }
+        .dev-steps li:nth-child(4)::before { content: '4'; }
+        .dev-steps li:nth-child(5)::before { content: '5'; }
+        .dev-steps li:nth-child(6)::before { content: '6'; }
+
+        /* Изображения */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            margin: 3rem 0;
+        }
+
+        .img_mobile, .img_ych_mobile {
+            width: 100%;
+            max-width: 600px;
+            height: 350px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+
+        .img_mobile:hover, .img_ych_mobile:hover {
+            transform: scale(1.02);
+        }
+
+        /* Кнопка */
+        .text_12 {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .text_12 a {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--ios-blue), var(--android-green));
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .text_12 a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.4);
+        }
+
+        .text_12 a::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .text_12 a:hover::after {
+            left: 100%;
+        }
+
+        /* Адаптация для мобильных */
+        @media (max-width: 768px) {
+            .wrapper {
+                padding: 0 1.5rem;
+            }
+            
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .title {
+                margin: 0.5rem 0 1rem;
+                font-size: 1.5rem;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .platforms {
+                grid-template-columns: 1fr;
+            }
+            
+            .img_mobile, .img_ych_mobile {
+                height: 250px;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <a href="main.html"><img src="assets/img/back.png" alt="Назад" class="back"></a>
+
+        <div class="title">Мобильная разработка</div>
+
+        <nav class="menu">
+            <ul>
+                <li><a href="main.html" class="link">Главная</a></li>
+                <li><a href="schedule.html" class="link">Расписание</a></li>
+                <li><a href="events.html" class="link">Мероприятия</a></li>
+                <li><a href="about.html" class="link">О нас</a></li>
+                <li><a href="clubs.html" class="link">Кружки</a></li>
+            </ul>
+        </nav>
+        
+        <div class="burger">
+            <span></span>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrapper">
+            <section class="hero">
+                <h1>Мобильная разработка</h1>
+                <p>Создавайте приложения для iOS и Android с нуля до публикации в магазинах</p>
+            </section>
+
+            <div class="info-card">
+                <h2>О мобильной разработке</h2>
+                <div class="text"><b>Мобильная разработка</b> — это процесс создания программного обеспечения для мобильных устройств, таких как смартфоны и планшеты. В IT-Cube вы научитесь разрабатывать приложения для самых популярных платформ, используя современные технологии и инструменты.</div>
+                
+                <div class="image-container">
+                    <div class="img_mobile"></div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2>Популярные платформы</h2>
+                <div class="text">Выберите технологию для изучения:</div>
+                
+                <div class="platforms">
+                    <div class="platform android">
+                        <div class="platform-icon">🤖</div>
+                        <div class="platform-name">Android</div>
+                        <div class="text">Kotlin/Java</div>
+                    </div>
+                    
+                    <div class="platform ios">
+                        <div class="platform-icon">🍏</div>
+                        <div class="platform-name">iOS</div>
+                        <div class="text">Swift</div>
+                    </div>
+                    
+                    <div class="platform flutter">
+                        <div class="platform-icon">🦋</div>
+                        <div class="platform-name">Flutter</div>
+                        <div class="text">Кроссплатформенная разработка</div>
+                    </div>
+                    
+                    <div class="platform react">
+                        <div class="platform-icon">⚛️</div>
+                        <div class="platform-name">React Native</div>
+                        <div class="text">JavaScript/TypeScript</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2>Этапы разработки</h2>
+                <div class="text">Мобильный разработчик участвует во всех этапах создания приложения:</div>
+                
+                <ul class="dev-steps">
+                    <li><b>Проектирование</b> - определение архитектуры, навигации и функциональных возможностей вместе с командой.</li>
+                    <li><b>Написание кода</b> - выбор языка программирования в зависимости от типа устройств и задач продукта.</li>
+                    <li><b>Тестирование</b> - поиск и устранение ошибок, обеспечение безопасности данных.</li>
+                    <li><b>Документирование</b> - написание технической документации и руководств для пользователей.</li>
+                    <li><b>Публикация</b> - размещение приложения в магазинах (App Store, Google Play).</li>
+                    <li><b>Поддержка</b> - выпуск обновлений, добавление новых функций на основе отзывов.</li>
+                </ul>
+            </div>
+
+            <div class="image-container">
+                <div class="img_ych_mobile"></div>
+            </div>
+
+            <div class="text_12">
+                <a href="http://licey1str.ru/wp-content/uploads/2021/11/IT-куб_Основы-алгоритмики-и-логики-1.pdf" target="_blank">
+                    Скачать учебник по мобильной разработке
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/burger.js"></script>
+</body>
+</html>
